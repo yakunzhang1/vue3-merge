@@ -41,12 +41,8 @@ export default defineComponent({
       formRef.value
         .validate()
         .then(() => {
-          console.log("values", formState, toRaw(formState));
-          if (
-            formState.userName === "admin" &&
-            formState.passWord === "111111"
-          ) {
-            console.log(formState.userName, formState.passWord);
+          const { userName, passWord } = formState;
+          if (userName === "admin" && passWord === "111111") {
             router.push({ name: "home" });
           } else {
             message.info("请输入正确的密码");
@@ -68,7 +64,7 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style >
 .login_main {
   width: 60%;
   margin: 0 auto;
