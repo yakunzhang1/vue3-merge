@@ -1,27 +1,16 @@
 <template>
-  <a-menu
-    id="dddddd"
-    style="width: 278px"
-    v-model:openKeys="openKeys"
-    v-model:selectedKeys="selectedKeys"
-    mode="inline"
-  >
+  <a-menu id="dddddd" style="width: 259px" mode="inline">
     <div v-for="item in menuList" :key="item.id">
-      <a-sub-menu
-        key="sub1"
-        @titleClick="titleClick"
-        v-if="item.children"
-        :title="item.name"
-      >
+      <a-sub-menu key="sub1" v-if="item.children" :title="item.name">
         <MenuItem :id="item.id" :name="item.name" />
       </a-sub-menu>
-      <a-menu-item key="9" v-else>{{ item.name }}</a-menu-item>
+      <a-menu-item :key="item.id" v-else>{{ item.name }}</a-menu-item>
     </div>
   </a-menu>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from "vue";
+import { defineComponent, ref } from "vue";
 import MenuItem from "../MenuItem/index.vue";
 interface menuItem {
   id: string;
@@ -44,22 +33,8 @@ export default defineComponent({
       { id: "3", name: "测试菜单3" },
       { id: "4", name: "测试菜单4" },
     ]);
-    const selectedKeys = ref<string[]>(["1"]);
-    const openKeys = ref<string[]>(["sub1"]);
-    const titleClick = (e: Event) => {
-      console.log("titleClick", e);
-    };
-    watch(
-      () => openKeys,
-      (val) => {
-        console.log("openKeys", val);
-      }
-    );
     return {
-      selectedKeys,
-      openKeys,
       menuList,
-      titleClick,
     };
   },
 });
