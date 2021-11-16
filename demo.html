@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="loginBtn">登录</button>
+  <button id="button" tag=“login”>点击打开登陆浮层</button>
+  <script>
+    // const dark = {
+    //   duckSing() {
+    //     console.log('嘎嘎嘎')
+    //   }
+    // }
+    // const chicken = {
+    //   duckSing() {
+    //     console.log('嘎嘎嘎')
+    //   }
+    // }
+    // const choir = []
+    // function JoinChoir(animail) {
+    //   if (animail && typeof animail.duckSing === 'function') {
+    //     choir.push(animail)
+    //     console.log('恭喜加入合唱团')
+    //     console.log(`合唱团数量为${choir.length}个`)
+    //   }
+    // }
+    // JoinChoir(dark)
+    // JoinChoir(chicken)
+    // const obj1 = new Object()
+    // const obj2 = {}
+    // console.log(Object.getPrototypeOf(obj1) === Object.prototype)
+    // console.log(Object.getPrototypeOf(obj2) === Object.prototype)
+    // Function.prototype.before = function (fn) {
+    //   var _self = this;
+    //   return function () {
+    //     fn.apply(this, arguments)
+    //     return _self.apply(this, arguments)
+    //   }
+    // }
+    // Function.prototype.after = function (fn) {
+    //   var _self = this;
+    //   return function () {
+    //     var ret = _self.apply(this, arguments)
+    //     fn.apply(this, arguments)
+    //     return ret
+    //   }
+    // }
+    // let func = function () {
+    //   console.log(2)
+    // }
+    // let func2 = function () {
+    //   console.log(4)
+    // }
+
+    // func = func.before(function () {
+    //   console.log(1)
+    // }).after(function () {
+    //   console.log(3)
+    // })
+    // func()
+    // func2 = func2.before(function () {
+    //   console.log(1)
+    // })
+    // console.log(func2, '2')
+    // const cost = (
+    //   function () {
+    //     var arg = []
+    //     return function () {
+    //       if (arguments.length === 0) {
+    //         let money = 0
+    //         for (let i = 0; i < arg.length; i++) {
+    //           money += arg[i]
+    //         }
+    //         return money
+    //       } else {
+    //         [].push.apply(arg, arguments)
+    //       }
+    //     }
+    //   }
+    // )()
+    // cost(100)
+    // cost(200)
+    // console.log(cost())
+    // var currying = function (fn) {
+    //   var args = [];
+    //   return function () {
+    //     if (arguments.length === 0) {
+    //       return fn.apply(this, args);
+    //     } else {
+    //       [].push.apply(args, arguments);
+    //       return arguments.callee;
+    //     }
+    //   }
+    // };
+    // var cost = (function () {
+    //   var money = 0;
+    //   return function () {
+    //     for (var i = 0, l = arguments.length; i < l; i++) {
+    //       money += arguments[i];
+    //     }
+    //     return money;
+    //   }
+    // })();
+    // var cost = currying(cost); // 转化成 currying 函数
+    // cost(100); // 未真正求值
+    // cost(200); // 未真正求值
+    // cost(300); // 未真正求值
+    // // alert(cost()); // 求值并输出：600
+    // cost(100); // 未真正求值
+    // cost(200); // 未真正求值
+    // cost(300); // 未真正求值
+    // alert(cost()); // 求值并输出：600
+    // const throttle = function (fn, interval) {
+    //   let timer = null
+    //   let firstTime = true
+    //   const _self = fn
+    //   return function () {
+    //     const _me = this
+    //     let args = arguments
+    //     if (firstTime) {
+    //       _self.apply(_me, args)
+    //       return firstTime = false
+    //     }
+    //     if (timer) return
+    //     timer = setTimeout(() => {
+    //       console.log('执行了')
+    //       clearInterval(timer)
+    //       timer = null
+    //       _self.apply(_me, args)
+    //     }, interval || 1000)
+    //   }
+    // }
+    // window.onresize = throttle(function () {
+    //   console.log(1, '延时')
+    // }, 10000)
+    // var getSingle = function (fn) {
+    //   var result;
+    //   return function () {
+    //     return result || (result = fn.apply(this, arguments));
+    //   }
+    // };
+    // var createLoginLayer = function () {
+    //   var div = document.createElement('div');
+    //   div.innerHTML = '我是登录浮窗';
+    //   div.style.display = 'none';
+    //   document.body.appendChild(div);
+    //   return div;
+    // };
+    // var createSingleLoginLayer = getSingle(createLoginLayer);
+    // document.getElementById('loginBtn').onclick = function () {
+    //   var loginLayer = createSingleLoginLayer();
+    //   loginLayer.style.display = 'block';
+    // };
+    // // 下面我们再试试创建唯一的 iframe 用于动态加载第三方页面：
+    // var createSingleIframe = getSingle(function () {
+    //   var iframe = document.createElement('iframe');
+    //   document.body.appendChild(iframe);
+    //   return iframe;
+    // });
+    // document.getElementById('loginBtn').onclick = function () {
+    //   var loginLayer = createSingleIframe();
+    //   loginLayer.src = 'http://baidu.com';
+    // };
+    Function.prototype.$after = function (fn) {
+      const _self = this
+      return function () {
+        var ret = _self.apply(this, arguments)
+        fn.apply(this, arguments)
+        // fn()
+        return ret;
+      }
+    }
+    let showLogin = function () {
+      console.log('打开登陆浮层')
+    }
+    const log = function () {
+      console.log('上报文件为111')
+    }
+    showLogin = showLogin.$after(log)
+    document.querySelector('#button').onclick = showLogin
+  </script>
+</body>
+
+</html>

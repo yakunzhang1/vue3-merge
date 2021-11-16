@@ -1,10 +1,9 @@
 <template>
   <a-layout>
     <a-layout-header class="bgr_fff box_shadow line_height">
+      <span class="user_name">{{ showInfo.name }}</span>
       <a-dropdown v-model:visible="visible">
-        <a-avatar :size="46" class="float_right">
-          <template #icon>K</template>
-        </a-avatar>
+        <a-avatar class="float_right" :src="showInfo.imgUrl" />
         <template #overlay>
           <a-menu>
             <a-menu-item key="3">个人中心</a-menu-item>
@@ -28,21 +27,35 @@
 <script>
 import Menu from '../../components/Menu'
 import router from '../../router/index'
+import { onMounted, reactive } from 'vue'
 export default {
   name: 'Layout',
   components: {
     Menu
   },
   setup () {
+    // let showInfo = {}
+    // onMounted(() => {
+    //   const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+    //   const showInfo = reactive({
+    //     name: userInfo.name,
+    //     img: userInfo.imgUrl
+    //   })
+    // })
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+    const showInfo = reactive(userInfo)
     const logout = () => {
       router.push('/')
+      localStorage.setItem('rule', '')
     }
     const handleMenuClick = () => {
       console.log('11')
     }
+    console.log(showInfo)
     return {
       logout,
-      handleMenuClick
+      handleMenuClick,
+      showInfo
     }
   }
 }
@@ -59,8 +72,13 @@ export default {
 .float_right {
   /* float: right; */
   position: absolute;
-  right: 60px;
-  top: 7px;
+  right: 30px;
+  top: 13px;
   cursor: pointer;
+}
+.user_name {
+  position: absolute;
+  right: 80px;
+  top: -3px;
 }
 </style>
