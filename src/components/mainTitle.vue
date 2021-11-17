@@ -1,5 +1,4 @@
 <template>
-  <!-- <div>{{ title }}</div> -->
   <div class="title">我的收益</div>
 </template>
 
@@ -15,7 +14,10 @@ export default {
 
 <style lang="scss" scoped>
 .title {
-  position: absolute;
-  top: 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #303133;
+  margin-bottom: 40px;
+  text-align: left;
 }
 </style>

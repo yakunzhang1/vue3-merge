@@ -14,7 +14,7 @@
       </a-dropdown>
     </a-layout-header>
     <a-layout>
-      <a-layout-sider class="bgr_fff">
+      <a-layout-sider class="bgr_fff" width="274px">
         <Menu style="min-height: 600px" />
       </a-layout-sider>
       <a-layout-content>
