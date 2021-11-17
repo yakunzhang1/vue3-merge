@@ -15,7 +15,7 @@
     </a-layout-header>
     <a-layout>
       <a-layout-sider class="bgr_fff">
-        <Menu />
+        <Menu style="min-height: 600px" />
       </a-layout-sider>
       <a-layout-content>
         <router-view></router-view>
