@@ -33,6 +33,14 @@ const routes = [
         component: () => import('../pages/test3/index.vue')
       },
     ]
+  },
+  {
+    path: '/404',
+    component: () => import('../pages/404.vue')
+  },
+  {
+    path: '/:pathMatch(.*)',
+    redirect: '/404'
   }
 ]
 export default createRouter({
