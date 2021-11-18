@@ -8,14 +8,14 @@
     >
       <div v-for="item in menuList" :key="item.id">
         <a-sub-menu
-          :key="item.id"
+          :key="item.path"
           v-if="item.children"
           :title="item.name"
           class="menu_item"
         >
           <MenuItem :id="item.id" :name="item.name" />
         </a-sub-menu>
-        <a-menu-item :key="item.id" v-else>
+        <a-menu-item :key="item.path" v-else>
           <!-- <a-icon type="search" /> -->
           <template #icon> </template>
           <router-link :to="{ name: item.path }">
@@ -32,6 +32,7 @@
 import { defineComponent, reactive, ref, toRef, toRefs } from "vue";
 // import { MailOutlined } from "@ant-design/icons-vue";
 import MenuItem from "../MenuItem/index.vue";
+import router from "../../router/index";
 export default defineComponent({
   name: "Menu",
   components: {
@@ -54,8 +55,9 @@ export default defineComponent({
       ],
     });
     const selectedKeys1 = reactive({
-      selectedKeys: [state.menuList[0].id],
+      selectedKeys: [router.currentRoute.value.name],
     });
+    console.log(selectedKeys1.selectedKeys[0]);
     const clickMenu = (item, key, keyPath) => {
       console.log(item, key, keyPath);
     };
