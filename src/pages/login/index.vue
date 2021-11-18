@@ -26,8 +26,7 @@
 </template>
 
 <script lang='ts'>
-import { message } from "ant-design-vue";
-import { defineComponent, reactive, ref } from "vue";
+import { defineComponent, onMounted, reactive, ref } from "vue";
 import _rule from "../../utils/ruleJson";
 import _userInfo from "../../utils/userInfo";
 import router from "../../router/index";
