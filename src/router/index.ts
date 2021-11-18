@@ -32,6 +32,11 @@ const routes = [
         name: 'Test3',
         component: () => import('../pages/test3/index.vue')
       },
+      {
+        path: '/choosefoods',
+        name: 'ChooseFoods',
+        component: () => import('../pages/chooseFoods/index.vue')
+      },
     ]
   },
   {

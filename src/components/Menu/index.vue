@@ -1,47 +1,73 @@
 <template>
-  <a-menu id="dddddd" style="width: 259px" mode="inline">
-    <div v-for="item in menuList" :key="item.id">
-      <a-sub-menu key="sub1" v-if="item.children" :title="item.name">
-        <MenuItem :id="item.id" :name="item.name" />
-      </a-sub-menu>
-      <a-menu-item :key="item.id" v-else>
-        <router-link :to="{ name: item.name }">{{ item.name }}</router-link>
-      </a-menu-item>
-    </div>
-  </a-menu>
+  <div>
+    <a-menu
+      id="dddddd"
+      mode="inline"
+      @click="clickMenu"
+      v-model:selectedKeys="selectedKeys"
+    >
+      <div v-for="item in menuList" :key="item.id">
+        <a-sub-menu
+          :key="item.id"
+          v-if="item.children"
+          :title="item.name"
+          class="menu_item"
+        >
+          <MenuItem :id="item.id" :name="item.name" />
+        </a-sub-menu>
+        <a-menu-item :key="item.id" v-else>
+          <!-- <a-icon type="search" /> -->
+          <template #icon> </template>
+          <router-link :to="{ name: item.path }">
+            <!-- <a-icon :type="item.icon" theme="filled" /> -->
+            {{ item.name }}</router-link
+          >
+        </a-menu-item>
+      </div>
+    </a-menu>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, reactive, ref, toRef, toRefs } from "vue";
+// import { MailOutlined } from "@ant-design/icons-vue";
 import MenuItem from "../MenuItem/index.vue";
-interface menuItem {
-  id: string;
-  name: string;
-  children?: any;
-}
 export default defineComponent({
   name: "Menu",
   components: {
     MenuItem,
+    // MailOutlined,
   },
   setup() {
-    const menuList = ref<menuItem[]>([
-      { id: "1", name: "Home" },
-      // {
-      //   id: "2",
-      //   name: "测试菜单2",
-      //   children: [{ id: "11", name: "测试子菜单" }],
-      // },
-      { id: "3", name: "Test1" },
-      { id: "4", name: "Test2" },
-      { id: "5", name: "Test3" },
-    ]);
+    const state = reactive({
+      menuList: [
+        {
+          id: "1",
+          name: "我的收益",
+          path: "Home",
+          icon: `1`,
+        },
+        { id: "2", name: "基金查看中心", path: "Test1", icon: "bulb" },
+        { id: "3", name: "用户权限控制", path: "Test2", icon: "usergroup-add" },
+        { id: "4", name: "你争我吵", path: "Test3", icon: "pay-circle" },
+        { id: "5", name: "点菜系统", path: "ChooseFoods", icon: "pay-circle" },
+      ],
+    });
+    const selectedKeys1 = reactive({
+      selectedKeys: [state.menuList[0].id],
+    });
+    const clickMenu = (item, key, keyPath) => {
+      console.log(item, key, keyPath);
+    };
     return {
-      menuList,
+      // menuList,
+      clickMenu,
+      ...toRefs(selectedKeys1),
+      ...toRefs(state),
     };
   },
 });
 </script>
 
-<style>
+<style lang="scss" scoped>
 </style>
