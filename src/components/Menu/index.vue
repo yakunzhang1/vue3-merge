@@ -50,6 +50,7 @@ export default defineComponent({
         { id: "2", name: "基金查看中心", path: "Test1", icon: "bulb" },
         { id: "3", name: "用户权限控制", path: "Test2", icon: "usergroup-add" },
         { id: "4", name: "你争我吵", path: "Test3", icon: "pay-circle" },
+        { id: "5", name: "点菜系统", path: "ChooseFoods", icon: "pay-circle" },
       ],
     });
     const selectedKeys1 = reactive({

@@ -1,12 +1,22 @@
 <template>
-  <div class="title">我的收益</div>
+  <div class="title">{{ title }}</div>
 </template>
 
 <script>
+import { reactive, toRefs } from 'vue'
 export default {
   props: {
     title: {
       type: String
+    }
+  },
+  setup (props) {
+    console.log(props)
+    const state = reactive({
+      title: props.title
+    })
+    return {
+      ...toRefs(state)
     }
   }
 }

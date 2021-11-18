@@ -17,7 +17,7 @@
       <a-layout-sider class="bgr_fff" width="274px">
         <Menu style="min-height: 600px" />
       </a-layout-sider>
-      <a-layout-content>
+      <a-layout-content style="padding: 20px">
         <router-view></router-view>
       </a-layout-content>
     </a-layout>
