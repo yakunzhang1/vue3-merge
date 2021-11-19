@@ -1,34 +1,32 @@
 <template>
   <div class="main">
     <div class="login_main">
-      <div class="userInfo">
         <a-form
           :labelCol="{ span: 4 }"
           ref="formRef"
           :model="formState"
           :rules="rules"
-          class="login_form"
           @keyup.enter="onSubmit"
         >
           <a-form-item label="用户名" name="userName">
-            <a-input v-model:value="formState.userName" />
+            <a-input  allowClear v-model:value="formState.userName" />
           </a-form-item>
           <a-form-item label="密码" name="passWord">
-            <a-input v-model:value="formState.passWord" />
+            <a-input  allowClear v-model:value="formState.passWord" />
           </a-form-item>
-
           <a-form-item>
-            <a-button type="primary" @click="onSubmit">登陆</a-button>
+            <div class="btn-submit">
+              <a-button size="large" style="width: 80%" type="primary" @click="onSubmit">登陆</a-button>
+            </div>
           </a-form-item>
         </a-form>
-      </div>
     </div>
   </div>
 </template>
 
 <script lang='ts'>
 import { message } from "ant-design-vue";
-import { defineComponent, reactive, ref ,  nextTick,onMounted} from "vue";
+import { defineComponent, reactive, ref } from "vue";
 import _rule from "../../utils/ruleJson";
 import _userInfo from "../../utils/userInfo";
 import router from "../../router/index";
@@ -77,31 +75,24 @@ export default defineComponent({
 });
 </script>
 
-<style >
+<style lang="scss">
 .main {
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .login_main {
-  width: 40%;
-  position: absolute;
-  padding-top: 200px;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-.userInfo {
-  width: 100%;
-  padding: 80px 0;
-  border: 1px solid #ccc;
+  width: 20%;
+  padding: 60px;
   border-radius: 6px;
   background-color: #fff;
+  box-shadow: 0px 21px 41px 0px rgba(0,0,0,0.2);
 }
-.login_form {
-  /* width: 60%; */
-  padding: 0 60px;
-  margin: 0 auto;
+.btn-submit{
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 </style>
