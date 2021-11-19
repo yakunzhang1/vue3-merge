@@ -8,6 +8,7 @@
           :model="formState"
           :rules="rules"
           class="login_form"
+          @keyup.enter="onSubmit"
         >
           <a-form-item label="用户名" name="userName">
             <a-input v-model:value="formState.userName" />
@@ -26,7 +27,8 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, onMounted, reactive, ref } from "vue";
+import { message } from "ant-design-vue";
+import { defineComponent, reactive, ref ,  nextTick,onMounted} from "vue";
 import _rule from "../../utils/ruleJson";
 import _userInfo from "../../utils/userInfo";
 import router from "../../router/index";
@@ -43,9 +45,7 @@ export default defineComponent({
       passWord: { required: true, message: "请输入密码" },
     };
     const onSubmit = () => {
-      formRef.value
-        .validate()
-        .then(() => {
+      formRef.value.validate().then(() => {
           const { userName, passWord } = formState;
           if (userName === "admin" && passWord === "123456") {
             router.push({ name: "Home" });
@@ -59,6 +59,8 @@ export default defineComponent({
             router.push({ name: "Home" });
             localStorage.setItem("rule", JSON.stringify(_rule.jerry));
             localStorage.setItem("userInfo", JSON.stringify(_userInfo.jerry));
+          }else{
+            message.error('用户名或密码不正确！')
           }
         })
         .catch((error) => {
